@@ -1,0 +1,25 @@
+# Node modules
+node_modules/
+
+# Environment files
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# Log files
+*.log
+
+# OS-specific files
+.DS_Store
+
+# Uploaded media
+uploads/
+
+# Debug stuff
+npm-debug.log*
+pnpm-debug.log*
+
+# Build artifacts (just in case you build server)
+dist/
