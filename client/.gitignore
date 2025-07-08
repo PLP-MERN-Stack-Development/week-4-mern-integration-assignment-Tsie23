@@ -1,0 +1,23 @@
+# Node Modules
+node_modules/
+
+# Vite build output
+dist/
+
+# Environment config
+.env
+.env.local
+.env.development
+.env.production
+
+# OS-specific clutter
+.DS_Store
+
+# Logs and debug
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# IDE config
+.vscode/
+.idea/
