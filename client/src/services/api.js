@@ -80,6 +80,12 @@ export const postService = {
     return response.data;
   },
 
+  // Get comments for a post
+  getComments: async (postId) => {
+    const response = await api.get(`/posts/${postId}/comments`);
+    return response.data;
+  },
+
   // Search posts
   searchPosts: async (query) => {
     const response = await api.get(`/posts/search?q=${query}`);

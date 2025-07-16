@@ -12,6 +12,7 @@ export default function PostForm({ editId }) {
     );
     const [cats, setCats] = useState([]);
     const [form, setForm] = useState({ title:'', content:'', category:'', featuredImage:null });
+    const [formError, setFormError] = useState('');
 
     useEffect(()=>{
         getCats().then(setCats);
@@ -24,10 +25,19 @@ export default function PostForm({ editId }) {
 
     const handleSubmit = async e => {
         e.preventDefault();
+        setFormError('');
+        if (!form.title || !form.content || !form.category) {
+            setFormError('All fields are required.');
+            return;
+        }
         const fd = new FormData();
         for (let k in form) fd.append(k, form[k]);
-        await savePost(fd);
-        window.location.href = '/';
+        try {
+            await savePost(fd);
+            window.location.href = '/';
+        } catch (err) {
+            setFormError('Failed to save post.');
+        }
     };
 
     return (
@@ -41,6 +51,7 @@ export default function PostForm({ editId }) {
             <input type="file" onChange={e=>setForm({...form, featuredImage:e.target.files[0]})} />
             <button disabled={loading}>{ editId ? 'Update' : 'Create' }</button>
             {error && <p>Error: {error}</p>}
+            {formError && <p style={{color:'red'}}>{formError}</p>}
         </form>
     );
 }
